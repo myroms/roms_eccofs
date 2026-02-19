@@ -257,15 +257,15 @@ fi
 
       INTERVAL=3                       # 4D-Var interval window (days)
 
-        nPETsX=3                       # number PETs in the X-direction
-        nPETsY=4                       # number PETs in the Y-direction
+        nPETsX=8                       # number PETs in the X-direction
+        nPETsY=8                       # number PETs in the Y-direction
 
-      MyNouter=1                       # number of 4D-Var outer loops
-#     MyNouter=2                       # number of 4D-Var outer loops
+#     MyNouter=1                       # number of 4D-Var outer loops
+      MyNouter=2                       # number of 4D-Var outer loops
 
 #     MyNinner=32                      # number of 4D-Var inner loops: RPCG
-      MyNinner=16                      # number of 4D-Var inner loops: RPCG
-#     MyNinner=8                       # number of 4D-Var inner loops: RPCG
+#     MyNinner=16                      # number of 4D-Var inner loops: RPCG
+      MyNinner=8                       # number of 4D-Var inner loops: RPCG
 
      MyTimeIAU=0.0d0                   # Incremental Analysis Update window (days)
 #    MyTimeIAU=0.03125d0               # Incremental Analysis Update window (days)
@@ -343,13 +343,13 @@ fi
 
      MyINP_LIB=2                       # reading library: [1] standard [2] PIO
      MyOUT_LIB=2                       # writing library: [1] standard [2] PIO
-  MyPIO_METHOD=2                       # [2] serial read and write of NetCDF3 (64-bit offset)
-# MyPIO_METHOD=3                       # [3] parallel read and serial write of NetCDF4, delayed sync
- MyPIO_IOTASKS=2                       # number of I/O processes (use more than 1 on large grids)
-  MyPIO_STRIDE=5                       # stride in MPI-rank between I/O tasks (see documentation)
+# MyPIO_METHOD=2                       # [2] serial read and write of NetCDF3 (64-bit offset)
+  MyPIO_METHOD=3                       # [3] parallel read and serial write of NetCDF4, delayed sync
+ MyPIO_IOTASKS=4                       # number of I/O processes (use more than 1 on large grids)
+  MyPIO_STRIDE=8                       # stride in MPI-rank between I/O tasks (see documentation)
     MyPIO_BASE=0                       # offset for the first I/O task
    MyPIO_REARR=1                       # rearranger method: [1] box [2] subset
-MyPIO_REARRCOM=0                       # rearranger communications: [0] p2p [1] coll
+MyPIO_REARRCOM=1                       # rearranger communications: [0] p2p [1] coll
 MyPIO_REARRDIR=0                       # rearranger direction: [0] I2C/C2I, ... [3]
 
        restart=0                       # restart 4D-Var cycle (0:no, 1:yes)
