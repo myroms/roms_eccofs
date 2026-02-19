@@ -50,3 +50,6 @@ git clone https://github.com/myroms/roms_eccofs.git                 (default)
 git clone https://github.com/myroms/roms_eccofs.git <source_dir>
 ```
 ---
+|     |     |     |     |     |    |
+| --- | --- | --- | --- | --- | --- |
+|<img height="50" alt="Rutgers-DMCS_logo" src="https://github.com/user-attachments/assets/96be3456-da77-46b8-8feb-a38f11bc3ac7" /> | <img height="125" alt="UCSC_logo" src="https://github.com/user-attachments/assets/70ab1525-959f-43d6-bd7c-c50942bfcf4c" /> | <img height="125" alt="Fathom_Science_logo" src="https://github.com/user-attachments/assets/34ce12ba-c386-47d8-8923-ba121258e8e5" /> | <img height="125" alt="NOAA_logo" src="https://github.com/user-attachments/assets/9c0cec64-7c95-4f27-ba61-6c9e2a09c3a0" /> | <img height="125" alt="ROMS_logo" src="https://github.com/user-attachments/assets/8e3c405d-7cc6-4087-9284-3cb17b4639af" /> | <img height="125" alt="ROMS-JEDI_logo" src="https://github.com/user-attachments/assets/88f43835-a46c-4077-afe0-aabb7e486689" />|
