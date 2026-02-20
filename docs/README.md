@@ -1,6 +1,6 @@
 # East Coast Community Ocean Forecast System (ECCOFS)
 
-![ROMS_Picture](https://github.com/myroms/roms/assets/23062912/d72765ed-9d55-4109-84fc-c51b05832adb)
+<img width="1024" alt="image" src="https://github.com/user-attachments/assets/e99d23af-bbf2-46ad-a143-f7096d9e792f" />
 
 # License
 
