@@ -178,7 +178,7 @@ endif
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
-setenv ROMS_APPLICATION      USEC
+setenv ROMS_APPLICATION      ECCOFS
 
 # Set a local environmental variable to define the path to the directories
 # where the ROMS source code is located (MY_ROOT_DIR), and this project's
@@ -248,10 +248,10 @@ if ( $nl_exe == 1 ) then
 
   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOMEGA_IMPLICIT"
 
-  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIURNAL_SRFLUX"   # NARR forcing
+# setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIURNAL_SRFLUX"   # NARR forcing
 
 # setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
-  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSINGLE_PRECISION"
+# setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSINGLE_PRECISION"
 endif
 
 if ( $pio_lib == 1 ) then
@@ -275,6 +275,14 @@ endif
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCHECKSUM"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUTPUT_STATS"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCHECK_OPEN_FILES"
+
+if ( $pio_lib == 1 ) then
+  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDELAYED_SYNC_PIO"
+endif
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEFLATE"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDELAYED_SYNC_NF90"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_NETCDF4"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
