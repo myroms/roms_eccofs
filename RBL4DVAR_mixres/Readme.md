@@ -296,3 +296,24 @@ Running 4D-Var System:  Cycle = 1   Outer = 1   Phase = increment
    eccofs6km_roms_obs_20199101.nc                   6km observation vectors
    eccofs6km_roms_tlf_20190101.nc                   Adjoint impulse forcing, TLM forcing
   ```
+
+---
+
+  ### Results
+
+- **4D-Var Cycle**: Jan 1 - Jan 4, 2019, **ERA** forcing. Top-to-bottom figures showing 3km and 6km increments for free surface, potential temperature, salinity, u-velocity, and v-velocity at 20m depth. Notice that higher- and lower-resolution increments are indistinguishable. They are plotted with the provided **plot_state.m** Matlab script.
+  
+| 3km Increments at z=20m   | 6km Increments at z=20m  |
+:--------------------------:|:-------------------------:
+|<img width="600" alt="zeta_3km" src="https://github.com/user-attachments/assets/e17a588b-ca82-4f28-b0e9-6a49c9cc20aa" /> | <img width="600" alt="zeta_6km" src="https://github.com/user-attachments/assets/7bb43685-a490-4da7-80c1-97cddb03d937" /> |
+|<img width="600" alt="temp_3km_20m" src="https://github.com/user-attachments/assets/34b36583-da67-4442-947d-067b01fa3174" /> | <img width="600" alt="temp_6km_20m" src="https://github.com/user-attachments/assets/d48d4c24-3bc2-4327-a7d7-83dcefb96004" /> |
+
+
+
+
+
+
+
+
+
+
