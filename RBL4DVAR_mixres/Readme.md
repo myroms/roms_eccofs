@@ -229,8 +229,8 @@ Users may modify the number of processors to use in the **submit_mixres_rbl4dvar
               ReferenceTime: 2011 01 01 00 00 00
         RBL4D-Var StartTime: 2019 01 01 00 00 00
         RBL4D-Var  StopTime: 2019 01 04 00 00 00
-   ROMS outer loops Grid IC: ../../Data/INI/eccofs3km_roms_ini_20190101.nc
-   ROMS inner loops Grid IC: ../../Data/INI/eccofs6km_roms_ini_20190101.nc
+   ROMS outer loops Grid IC: ../../Data/INI/eccofs3km_roms_ini_20190101.nc4
+   ROMS inner loops Grid IC: ../../Data/INI/eccofs6km_roms_ini_20190101.nc4
    NL Standard Input Script: roms_nl_eccofs_era5_20190101.in   (outer loops grid)
    DA Standard Input Script: roms_da_eccofs_era5_20190101.in   (inner loops grid)
   NL RBL4D-Var Input Script: rbl4dvar_nl.in  (outer loops grid)
@@ -242,10 +242,10 @@ Changing to directory: /home/arango/ROMS/Projects/ECCOFS/RBL4DVAR_mixres/2019.01
 
    Creating NL ROMS Standard Input Script: roms_nl_eccofs_era5_20190101.in
    Creating DA ROMS Standard Input Script: roms_da_eccofs_era5_20190101.in
-   Copying NLM IC file ../../Data/INI/eccofs3km_roms_ini_20190101.nc  as  eccofs3km_roms_ini_20190101.nc
-   Copying NLM IC file ../../Data/INI/eccofs6km_roms_ini.nc  as  eccofs6km_roms_ini_20190101.nc
-   Copying OBS    file ../../Data/OBS/eccofs3km_roms_obs_20190101.nc  as  eccofs3km_roms_obs_20190101.nc
-   Copying OBS    file ../../Data/OBS/eccofs6km_roms_obs_20190101.nc  as  eccofs6km_roms_obs_20190101.nc
+   Copying NLM IC file ../../Data/INI/eccofs3km_roms_ini_20190101.nc4  as  eccofs3km_roms_ini_20190101.nc4
+   Copying NLM IC file ../../Data/INI/eccofs6km_roms_ini.nc4  as  eccofs6km_roms_ini_20190101.nc4
+   Copying OBS    file ../../Data/OBS/eccofs3km_roms_obs_20190101.nc4  as  eccofs3km_roms_obs_20190101.nc4
+   Copying OBS    file ../../Data/OBS/eccofs6km_roms_obs_20190101.nc4  as  eccofs6km_roms_obs_20190101.nc4
 
 Running 4D-Var System:  Cycle = 1   Outer = 0   Phase = background
 
@@ -262,6 +262,7 @@ Running 4D-Var System:  Cycle = 1   Outer = 1   Phase = increment
      (Resolution = 6 km, Fprefix = eccofs6km, Fsuffix = 20190101)
 
    mpirun -np 12 romsM_da roms_da_eccofs_era5_20190101.in
+```
 
 ---
 
