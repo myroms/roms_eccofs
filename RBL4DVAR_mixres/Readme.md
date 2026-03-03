@@ -311,6 +311,16 @@ Running 4D-Var System:  Cycle = 1   Outer = 1   Phase = increment
 |<img width="600" alt="u_3km_20m" src="https://github.com/user-attachments/assets/61f3a1ef-3e61-4131-b679-5b647ca2f9a9" /> | <img width="600" alt="u_6km_20m" src="https://github.com/user-attachments/assets/431c5cf5-816e-4f47-b100-6a59f06f8265" /> |
 |<img width="600" alt="v_3km_20m" src="https://github.com/user-attachments/assets/8496975c-e830-4ce0-b0d6-e95d38e56c17" /> | <img width="600" alt="v_6km_20m" src="https://github.com/user-attachments/assets/ee40949a-d05b-4baf-bcdb-fef6d79a57a6" /> |
 
+- **4D-Var Cycle**: Jan 1 - Jan 4, 2019, **ERA** forcing. Top-to-bottom figures showing 3km analysis (Jan 1, 2019) and forecasted next cycle initial conditions (Jan 4, 2019) for free surface, potential temperature, salinity, u-velocity, and v-velocity at 20m depth. Notice that higher- and lower-resolution increments are indistinguishable. They are plotted with the provided **plot_state.m** Matlab script.
+
+| 3km Analysis at z=20m     | 3km Forecast at z=20m  |
+:--------------------------:|:---------------------------------:
+|<img width="600" alt="zeta_3km_ana" src="https://github.com/user-attachments/assets/6ddac24c-2cbe-4638-bf6c-2db9218fc474" /> | <img width="600" alt="zeta_3km_next" src="https://github.com/user-attachments/assets/e372972b-5c72-4b3b-b139-7407bc68c4f3" /> |
+|<img width="600" alt="temp_3km_ana_20m" src="https://github.com/user-attachments/assets/8cb495ec-fc93-4759-97fc-395467d1dd1e" /> | <img width="600" alt="temp_3km_next_20m" src="https://github.com/user-attachments/assets/49b22ff5-1cc2-44d3-9587-10a445215868" /> |
+|<img width="600" alt="salt_3km_ana_20m" src="https://github.com/user-attachments/assets/4485e486-5668-436a-9593-3ca05b56dfad" /> | <img width="600" alt="salt_3km_next_20m" src="https://github.com/user-attachments/assets/7ddbd77e-07a9-487e-9b2c-2448ca020922" /> |
+|<img width="600" alt="u_3km_ana_20m" src="https://github.com/user-attachments/assets/3626c5e3-50c7-484a-9bd1-aaf14e345fb1" /> | <img width="600" alt="u_3km_next_20m" src="https://github.com/user-attachments/assets/7a99f159-11cb-457a-bd24-b336d3a6dfd0" /> |
+|<img width="600" alt="v_3km_ana_20m" src="https://github.com/user-attachments/assets/3de6197f-0edc-4b69-9f07-d60df3230d8e" /> | <img width="600" alt="v_3km_next_20m" src="https://github.com/user-attachments/assets/700f88bc-9094-4dd0-9010-3289a9dd638a" /> |
+
 - **4D-Var Penalty Function**: The figure below show the cost functions for **ERA5** forced **4D-Var** cycle with **Nouter=1** and **Ninner=16** configuration. Notice that the y-axis is on a logarithmic scale. It is plotted using the **plot_penalty.m** Matlab script.
 
 <img width="1200" alt="CostFunction" src="https://github.com/user-attachments/assets/be16beb1-1ffb-4351-9d6f-67553a924480" />
