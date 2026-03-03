@@ -9,7 +9,8 @@
 ** East Coast Community Ocean Forecast System
 **
 ** Application flag:   ECCOFS
-** Input script:       roms_eccofs.in
+** Input script:       roms_nl_eccofs.in   ! not yet created
+**                     roms_da_eccofs.in   ! not yet created
 **
 */
 
@@ -59,7 +60,6 @@
 #define SOLAR_SOURCE
 #define ANA_BSFLUX
 #define ANA_BTFLUX
-
 
 /* Vertical subgridscale turbulence closure */
 

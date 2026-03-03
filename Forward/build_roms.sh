@@ -247,6 +247,15 @@ fi
 
   export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DGRID_EXTRACT"
 
+if [ $pio_lib -eq 1 ]; then
+  echo " "
+  export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDELAYED_SYNC_PIO"
+fi
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEFLATE"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDELAYED_SYNC_NF90"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_NETCDF4"
+
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSINGLE_PRECISION"
 
@@ -275,8 +284,8 @@ fi
 
 #export        USE_OpenMP=on            # shared-memory parallelism
 
-#export              FORT=ifx
- export              FORT=ifort
+ export              FORT=ifx
+#export              FORT=ifort
 #export              FORT=gfortran
 #export              FORT=pgi
 

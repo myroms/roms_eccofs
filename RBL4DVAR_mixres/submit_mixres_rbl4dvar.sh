@@ -112,34 +112,34 @@ My4DVarScript() {
 ## running in weak-constraint mode.
 
 if [[ $res -eq 6 ]]; then
- STDnameM=${DataDir}/STD/eccofs6km_roms_std_i.nc
- STDnameI=${DataDir}/STD/eccofs6km_roms_std_i.nc
- STDnameB=${DataDir}/STD/eccofs6km_roms_std_b.nc
- STDnameF=${DataDir}/STD/eccofs6km_roms_std_f.nc
+ STDnameM=${DataDir}/STD/eccofs6km_roms_std_i.nc4
+ STDnameI=${DataDir}/STD/eccofs6km_roms_std_i.nc4
+ STDnameB=${DataDir}/STD/eccofs6km_roms_std_b.nc4
+ STDnameF=${DataDir}/STD/eccofs6km_roms_std_f.nc4
 
-#STDnameM=${DataDir}/STD/eccofs6km_roms_std_i_${Fsuffix}.nc
-#STDnameI=${DataDir}/STD/eccofs6km_roms_std_i_${Fsuffix}.nc
-#STDnameB=${DataDir}/STD/eccofs6km_roms_std_b_${Fsuffix}.nc
-#STDnameF=${DataDir}/STD/eccofs6km_roms_std_f_${Fsuffix}.nc
+#STDnameM=${DataDir}/STD/eccofs6km_roms_std_i_${Fsuffix}.nc4
+#STDnameI=${DataDir}/STD/eccofs6km_roms_std_i_${Fsuffix}.nc4
+#STDnameB=${DataDir}/STD/eccofs6km_roms_std_b_${Fsuffix}.nc4
+#STDnameF=${DataDir}/STD/eccofs6km_roms_std_f_${Fsuffix}.nc4
 else
- STDnameM=${DataDir}/STD/eccofs3km_roms_std_i.nc
- STDnameI=${DataDir}/STD/eccofs3km_roms_std_i.nc
- STDnameB=${DataDir}/STD/eccofs3km_roms_std_b.nc
- STDnameF=${DataDir}/STD/eccofs3km_roms_std_f.nc
+ STDnameM=${DataDir}/STD/eccofs3km_roms_std_i.nc4
+ STDnameI=${DataDir}/STD/eccofs3km_roms_std_i.nc4
+ STDnameB=${DataDir}/STD/eccofs3km_roms_std_b.nc4
+ STDnameF=${DataDir}/STD/eccofs3km_roms_std_f.nc4
 
-#STDnameM=${DataDir}/STD/eccofs3km_roms_std_i_${Fsuffix}.nc
-#STDnameI=${DataDir}/STD/eccofs3km_roms_std_i_${Fsuffix}.nc
-#STDnameB=${DataDir}/STD/eccofs3km_roms_std_b_${Fsuffix}.nc
-#STDnameF=${DataDir}/STD/eccofs3km_roms_std_f_${Fsuffix}.nc
+#STDnameM=${DataDir}/STD/eccofs3km_roms_std_i_${Fsuffix}.nc4
+#STDnameI=${DataDir}/STD/eccofs3km_roms_std_i_${Fsuffix}.nc4
+#STDnameB=${DataDir}/STD/eccofs3km_roms_std_b_${Fsuffix}.nc4
+#STDnameF=${DataDir}/STD/eccofs3km_roms_std_f_${Fsuffix}.nc4
 fi
 
 ## Set output file for standard deviation computed/modeled from background
 ## (prior) state.
 
 if [[ $res -eq 6 ]]; then
- STDnameC=eccofs6km_roms_std_computed.nc
+ STDnameC=eccofs6km_roms_std_computed.nc4
 else
- STDnameC=eccofs3km_roms_std_computed.nc
+ STDnameC=eccofs3km_roms_std_computed.nc4
 fi
 
 ## Set model, initial conditions, boundary conditions and surface
@@ -148,15 +148,15 @@ fi
 ## running in weak-constraint mode.
 
 if [[ $res -eq 6 ]]; then
- NRMnameM=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc
- NRMnameI=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc
- NRMnameB=${DataDir}/NRM/eccofs6km_roms_nrm_b.nc
- NRMnameF=${DataDir}/NRM/eccofs6km_roms_nrm_f.nc
+ NRMnameM=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
+ NRMnameI=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
+ NRMnameB=${DataDir}/NRM/eccofs6km_roms_nrm_b.nc4
+ NRMnameF=${DataDir}/NRM/eccofs6km_roms_nrm_f.nc4
 else
- NRMnameM=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc
- NRMnameI=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc
- NRMnameB=${DataDir}/NRM/eccofs3km_roms_nrm_b.nc
- NRMnameF=${DataDir}/NRM/eccofs3km_roms_nrm_f.nc
+ NRMnameM=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
+ NRMnameI=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
+ NRMnameB=${DataDir}/NRM/eccofs3km_roms_nrm_b.nc4
+ NRMnameF=${DataDir}/NRM/eccofs3km_roms_nrm_f.nc4
 fi
 
 ## Modify 4D-Var template input script and specify above files.
@@ -696,7 +696,7 @@ while [ $SDAY -le $L_DN ]; do
       echo "Error while running 4D-Var System:  Cycle = ${Cycle}" \
                                              "  Outer = ${OuterLoop}" \
                                              "  Phase = ${Phase4DVAR}"
-      echo "Check ${RunDir}/log.roms for details ..."
+      echo "Check ${nl_log} for details ..."
       exit 1
     fi
   fi
@@ -754,7 +754,7 @@ while [ $SDAY -le $L_DN ]; do
         echo "Error while running 4D-Var System:  Cycle = ${Cycle}" \
                                                "  Outer = ${OuterLoop}" \
 			                       "  Phase = ${Phase4DVAR}"
-        echo "Check ${RunDir}/log.roms for details ..."
+        echo "Check ${da_log} for details ..."
         exit 1
       fi
     fi
@@ -789,7 +789,7 @@ while [ $SDAY -le $L_DN ]; do
         echo "Error while running 4D-Var System:  Cycle = ${Cycle}" \
                                                "  Outer = ${OuterLoop}" \
 			                       "  Phase = ${Phase4DVAR}"
-        echo "Check ${RunDir}/log.roms for details ..."
+        echo "Check ${nl_log} for details ..."
         exit 1
       fi
     fi

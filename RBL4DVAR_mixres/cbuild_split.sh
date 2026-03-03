@@ -274,7 +274,7 @@ if [ $da_exe -eq 1 ]; then
   echo "Compiling 4D-Var Data Assimilation inner loops executable:"  
   echo
 # export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
-  export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSINGLE_PRECISION"
+# export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSINGLE_PRECISION"
 fi
 
 if [ $nl_exe -eq 1 ]; then
@@ -289,7 +289,7 @@ if [ $nl_exe -eq 1 ]; then
 # export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDIURNAL_SRFLUX"   # NAM forcing
 
 # export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
-  export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSINGLE_PRECISION"
+# export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSINGLE_PRECISION"
 fi
 
 if [ $pio_lib -eq 1 ]; then
@@ -314,6 +314,15 @@ fi
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUTPUT_STATS"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCHECK_OPEN_FILES"
 
+if [ $pio_lib -eq 1 ]; then
+  echo " "
+  export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDELAYED_SYNC_PIO"
+fi
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEFLATE"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDELAYED_SYNC_NF90"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_NETCDF4"
+
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
@@ -335,8 +344,8 @@ fi
 #export         which_MPI=mvapich2         # compile with MVAPICH2 library
  export         which_MPI=openmpi          # compile with OpenMPI library
 
-#export              FORT=ifx
- export              FORT=ifort
+ export              FORT=ifx
+#export              FORT=ifort
 #export              FORT=gfortran
 #export              FORT=pgi
 
