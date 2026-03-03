@@ -318,8 +318,8 @@ Running 4D-Var System:  Cycle = 1   Outer = 1   Phase = increment
 |<img width="600" alt="zeta_3km_ana" src="https://github.com/user-attachments/assets/1c6c6f67-3e99-426d-84d4-2c29586d139f" /> | <img width="600" alt="zeta_3km_next" src="https://github.com/user-attachments/assets/6bff9ab5-81e4-4f93-b246-51f9c446420d" /> |
 |<img width="600" alt="temp_3km_ana_20m" src="https://github.com/user-attachments/assets/46b68606-4da8-46a5-9b99-5371db91c908" /> | <img width="600" alt="temp_3km_next_20m" src="https://github.com/user-attachments/assets/20c3782b-bdde-4aa5-809f-2651fd190284" /> |
 |<img width="600" alt="salt_3km_ana_20m" src="https://github.com/user-attachments/assets/4485e486-5668-436a-9593-3ca05b56dfad" /> | <img width="600" alt="salt_3km_next_20m" src="https://github.com/user-attachments/assets/7ddbd77e-07a9-487e-9b2c-2448ca020922" /> |
-|<img width="600" alt="u_3km_ana_20m" src="https://github.com/user-attachments/assets/3626c5e3-50c7-484a-9bd1-aaf14e345fb1" /> | <img width="600" alt="u_3km_next_20m" src="https://github.com/user-attachments/assets/7a99f159-11cb-457a-bd24-b336d3a6dfd0" /> |
-|<img width="600" alt="v_3km_ana_20m" src="https://github.com/user-attachments/assets/3de6197f-0edc-4b69-9f07-d60df3230d8e" /> | <img width="600" alt="v_3km_next_20m" src="https://github.com/user-attachments/assets/700f88bc-9094-4dd0-9010-3289a9dd638a" /> |
+|<img width="600" alt="u_3km_ana_20m" src="https://github.com/user-attachments/assets/d5bb663f-3094-4be2-8d36-15704a8fa38f"  /> | <img width="600" alt="u_3km_next_20m" src="https://github.com/user-attachments/assets/fd3eaf3b-158a-4ac3-a528-87fd60eb0d2c" /> |
+|<img width="600" alt="v_3km_ana_20m" src="https://github.com/user-attachments/assets/46695bae-3842-478b-aef1-124d78ad5b30" /> | <img width="600" alt="v_3km_next_20m" src="https://github.com/user-attachments/assets/c19350e4-4655-459d-bc1a-362e7e3ef4c3" /> |
 
 - **4D-Var Penalty Function**: The figure below show the cost functions for **ERA5** forced **4D-Var** cycle with **Nouter=1** and **Ninner=16** configuration. Notice that the y-axis is on a logarithmic scale. It is plotted using the **plot_penalty.m** Matlab script.
 
