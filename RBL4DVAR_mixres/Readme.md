@@ -305,8 +305,13 @@ Running 4D-Var System:  Cycle = 1   Outer = 1   Phase = increment
   
 | 3km Increments at z=20m   | 6km Increments at z=20m  |
 :--------------------------:|:-------------------------:
-|<img width="600" alt="zeta_3km" src="https://github.com/user-attachments/assets/e17a588b-ca82-4f28-b0e9-6a49c9cc20aa" /> | <img width="600" alt="zeta_6km" src="https://github.com/user-attachments/assets/7bb43685-a490-4da7-80c1-97cddb03d937" /> |
-|<img width="600" alt="temp_3km_20m" src="https://github.com/user-attachments/assets/34b36583-da67-4442-947d-067b01fa3174" /> | <img width="600" alt="temp_6km_20m" src="https://github.com/user-attachments/assets/d48d4c24-3bc2-4327-a7d7-83dcefb96004" /> |
+|<img width="600" alt="zeta_3km" src="https://github.com/user-attachments/assets/e17a588b-ca82-4f28-b0e9-6a49c9cc20aa" /> | <img width="600" alt="zeta_6km_20m" src="https://github.com/user-attachments/assets/0a65533c-6685-4d9c-ade5-6b2ada92a719" /> |
+|<img width="600" alt="temp_3km_20m" src="https://github.com/user-attachments/assets/34b36583-da67-4442-947d-067b01fa3174" /> | <img width="600" alt="temp_6km_20m" src="https://github.com/user-attachments/assets/11ec6477-38d0-4f15-a3f2-3bd1d2faa903" /> |
+|<img width="600" alt="salt_3km_20m" src="https://github.com/user-attachments/assets/5a9d892f-8f0f-4c55-87f1-b4fb34324554" /> | <img width="600" alt="salt_6km_20m" src="https://github.com/user-attachments/assets/e0a71571-2200-42e1-a03d-54d64518859c" /> |
+|<img width="600" alt="u_3km_20m" src="https://github.com/user-attachments/assets/61f3a1ef-3e61-4131-b679-5b647ca2f9a9" /> | <img width="600" alt="u_6km_20m" src="https://github.com/user-attachments/assets/431c5cf5-816e-4f47-b100-6a59f06f8265" /> |
+|<img width="600" alt="v_3km_20m" src="https://github.com/user-attachments/assets/8496975c-e830-4ce0-b0d6-e95d38e56c17" /> | <img width="600" alt="v_6km_20m" src="https://github.com/user-attachments/assets/ee40949a-d05b-4baf-bcdb-fef6d79a57a6" /> |
+
+
 
 
 
