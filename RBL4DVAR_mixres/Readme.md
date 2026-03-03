@@ -311,14 +311,28 @@ Running 4D-Var System:  Cycle = 1   Outer = 1   Phase = increment
 |<img width="600" alt="u_3km_20m" src="https://github.com/user-attachments/assets/61f3a1ef-3e61-4131-b679-5b647ca2f9a9" /> | <img width="600" alt="u_6km_20m" src="https://github.com/user-attachments/assets/431c5cf5-816e-4f47-b100-6a59f06f8265" /> |
 |<img width="600" alt="v_3km_20m" src="https://github.com/user-attachments/assets/8496975c-e830-4ce0-b0d6-e95d38e56c17" /> | <img width="600" alt="v_6km_20m" src="https://github.com/user-attachments/assets/ee40949a-d05b-4baf-bcdb-fef6d79a57a6" /> |
 
+- **4D-Var Penalty Function**: The figure below show the cost functions for **ERA5** forced **4D-Var** cycle with **Nouter=1** and **Ninner=16** configuration. Notice that the y-axis is on a logarithmic scale. It is plotted using the **plot_penalty.m** Matlab script.
+
+<img width="1200" alt="CostFunction" src="https://github.com/user-attachments/assets/be16beb1-1ffb-4351-9d6f-67553a924480" />
+
+- **Minimization control vectors**: Innovations (Observations minus Background), Increment (Analysis minus Background), Residual (observation minus Analysis), and prescribed background error standard deviations for the **ERA5** forced case. The assimilated observations include SSH altimetry, HF Radar surface currents, satellite SST, and insitu Temperature and salinity. They are plotted with **plot_4dvar_vectors.m** Matlab script.
+
+<img width="4322" height="3463" alt="inn_20190101" src="https://github.com/user-attachments/assets/01a780f3-33d4-448f-8cad-0da4141ce559" />
+
+---
+
+<img width="4322" height="3463" alt="inc_20190101" src="https://github.com/user-attachments/assets/e42c07b7-7097-486c-91fe-7e497ceb7ad7" />
+
+---
+
+<img width="4322" height="3463" alt="res_20190101" src="https://github.com/user-attachments/assets/e8c9e429-280a-4fce-a148-32a5f7a355c3" />
+
+---
+
+<img width="4332" height="3463" alt="err_20190101" src="https://github.com/user-attachments/assets/517c56a1-098e-4aa4-a73f-03973828180f" />
 
 
-
-
-
-
-
-
+  
 
 
 
