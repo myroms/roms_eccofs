@@ -315,8 +315,8 @@ Running 4D-Var System:  Cycle = 1   Outer = 1   Phase = increment
 
 | 3km Analysis at z=20m     | 3km Forecast at z=20m  |
 :--------------------------:|:---------------------------------:
-|<img width="600" alt="zeta_3km_ana" src="https://github.com/user-attachments/assets/6ddac24c-2cbe-4638-bf6c-2db9218fc474" /> | <img width="600" alt="zeta_3km_next" src="https://github.com/user-attachments/assets/e372972b-5c72-4b3b-b139-7407bc68c4f3" /> |
-|<img width="600" alt="temp_3km_ana_20m" src="https://github.com/user-attachments/assets/8cb495ec-fc93-4759-97fc-395467d1dd1e" /> | <img width="600" alt="temp_3km_next_20m" src="https://github.com/user-attachments/assets/49b22ff5-1cc2-44d3-9587-10a445215868" /> |
+|<img width="600" alt="zeta_3km_ana" src="https://github.com/user-attachments/assets/1c6c6f67-3e99-426d-84d4-2c29586d139f" /> | <img width="600" alt="zeta_3km_next" src="https://github.com/user-attachments/assets/6bff9ab5-81e4-4f93-b246-51f9c446420d" /> |
+|<img width="600" alt="temp_3km_ana_20m" src="https://github.com/user-attachments/assets/46b68606-4da8-46a5-9b99-5371db91c908" /> | <img width="600" alt="temp_3km_next_20m" src="https://github.com/user-attachments/assets/20c3782b-bdde-4aa5-809f-2651fd190284" /> |
 |<img width="600" alt="salt_3km_ana_20m" src="https://github.com/user-attachments/assets/4485e486-5668-436a-9593-3ca05b56dfad" /> | <img width="600" alt="salt_3km_next_20m" src="https://github.com/user-attachments/assets/7ddbd77e-07a9-487e-9b2c-2448ca020922" /> |
 |<img width="600" alt="u_3km_ana_20m" src="https://github.com/user-attachments/assets/3626c5e3-50c7-484a-9bd1-aaf14e345fb1" /> | <img width="600" alt="u_3km_next_20m" src="https://github.com/user-attachments/assets/7a99f159-11cb-457a-bd24-b336d3a6dfd0" /> |
 |<img width="600" alt="v_3km_ana_20m" src="https://github.com/user-attachments/assets/3de6197f-0edc-4b69-9f07-d60df3230d8e" /> | <img width="600" alt="v_3km_next_20m" src="https://github.com/user-attachments/assets/700f88bc-9094-4dd0-9010-3289a9dd638a" /> |
