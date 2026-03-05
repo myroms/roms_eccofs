@@ -116,3 +116,21 @@ Note that the total number of **MPI** processes is **NtileI * NtileJ**.
    eccofs6km_roms_xtr_20190101.nc                 ECCOFS 6km NLM decimated history trajectory
   ```
 ---
+
+### Results
+
+- **NLM Solution**: Jan 1 - Jan 4, 2019, **ERA** forcing. Top-to-bottom figures showing **3km** and decimated **6km** fields for free surface, potential temperature, salinity, u-velocity, and v-velocity at 20m depth. Notice that higher- and lower-resolution increments are indistinguishable. They are plotted with the provided **plot_state.m** Matlab script.
+  
+| 3km Solution at z=20m     | Decimated 6km Solution at z=20m  |
+:--------------------------:|:---------------------------------:
+|<img width="600" alt="zeta_3km_20m" src="https://github.com/user-attachments/assets/75318489-9e0d-4d16-a923-2431a0e6ac03" /> | <img width="600" alt="zeta_6km_20m" src="https://github.com/user-attachments/assets/15df175f-4ced-4fb8-a170-539b31ff9bbe" /> |
+|<img width="600" alt="temp_3km_20m" src="https://github.com/user-attachments/assets/d30bda1e-67a7-4d7c-936e-0bcbe0bcfdfd" /> | <img width="600" alt="temp_6km_20m" src="https://github.com/user-attachments/assets/7029e7f8-b4f6-4770-9267-c3e976304ed8" /> |
+|<img width="600" alt="salt_3km_20m" src="https://github.com/user-attachments/assets/37bec9bf-8447-4a8f-afc5-597c120de180" /> | <img width="600" alt="salt_6km_20m" src="https://github.com/user-attachments/assets/16b7e9f4-95f3-4705-8783-35724e36338c" /> |
+|<img width="600" alt="u_3km_20m" src="https://github.com/user-attachments/assets/da6fd2cf-ed04-44cd-a3d8-d66c8422ac88" /> | <img width="600" alt="u_6km_20m" src="https://github.com/user-attachments/assets/86af9711-1e38-4a2d-a6c1-80de3db4d36d" /> |
+|<img width="600" alt="v_3km_20m" src="https://github.com/user-attachments/assets/83fb4dd6-0a84-4c93-a3a5-82cc027b6d10" /> | <img width="600" alt="v_6km_20m" src="https://github.com/user-attachments/assets/7482df36-f05d-4ed0-b483-15bc602445bd" /> |
+
+
+
+
+
+
