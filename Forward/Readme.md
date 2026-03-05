@@ -2,41 +2,17 @@
 
  ## NLM Kernel Benchmark: East Coast Community Ocean Forecast System (ECCOFS) 
 
- This directory contains instructions for configuring and benchmarking the **ROMS** split,
- mixed-resolution **RBL4D-Var** data assimilation algorithm. The mixed-resolution **4D-Var** 
- utilizes the East Coast Community Ocean Forecast System (**ECCOFS**) application. The **4D-Var** 
- outer loops, encompassing the **Background** and **Analysis** phases, operate at a **3** km grid
- resolution (**ECCOFS3**; **1667x1443x50**). In contrast, the inner loops in the **Increment** 
- (minimization) phase use a coarser **6** km grid (**ECCOFS6**; **834x722x50**) to enhance
- computational efficiency. During the **Analysis** phase, **4D-Var** increments generated on
- the coarse grid are interpolated to the finer grid using the **roms_interp** and **roms2roms** 
- `CLASS objects`. For further information, consult the modules **ROMS/Utility/roms_interp.F** and
- **ROMS/Utility/state_regrid.F**.
+ This directory contains instructions for configuring and benchmarking the **ROMS** nonlinear
+ kernel driver with the East Coast Community Ocean Forecast System (**ECCOFS**) application. It
+ uses the fine-resolution 3km grid (**ECCOFS3**). It extracts a **6km** grid trajectory using a
+ decimation factor of **2**, sampling the solution every other horizontal grid point, level-by-level.
+ This strategy is used in the **mixed-resolution** split **4D-Var** data assimilation algorithm
+ to improve computational efficiency, as shown in the smaller
+ [USEC application](https://github.com/myroms/roms_test/blob/main/USEC/RBL4DVAR_mixres/Readme.md).
+ It also computes the model solution at the observation locations, **H(x)** operator, which can be used
+ for verification purposes.
 
- <img width = "648" height = "542" alt = "image" src = "https://github.com/user-attachments/assets/645a4d40-f694-4f81-b1c6-f02b78886383"> 
-
- In the **Background** phase, the coarse grid trajectory needed to linearize the tangent
- linear (**TLM**) and adjoint (**ADM**) model kernels is extracted by a decimation of the
- 3km grid solution using the CPP option **GRID_EXTRACT**. Grid decimation is only possible
- if the parent grid (**ECCOFS3** , **Lm=1665** and **Mm=1441**) size satisfies
- **MOD(Lm+1, 2) = 0** and **MOD(Mm+1, 2) = 0** . Please check
- https://github.com/myroms/roms/pull/32 for more information. Currently, we only
- support **ExtractFlag=2** for decimation in the **mixed-resolution** split **4D-Var** scheme
- because land/sea masking complicates extraction at factors larger than two.
-
- The **mixed-resolution** split **4D-Var** data assimilation strategy improves the
- computational efficiency, as shown for the smaller
- [USEC application](https://github.com/myroms/roms_test/blob/main/USEC/RBL4DVAR_mixres/Readme.md), 
- where the computational efficiency can be improved over **88** percent (**Case 8**) compared
- to the **3** km non-splitted **4D-Var** in double precision (**Case 5**).
-
- In this benchmark, data are provided for a **3**-day data assimilation cycle:
-
- - **4D-Var Cycle**: Jan 1 - Jan 4, 2019 (execution creates sub-directory **2019.01.01**).
-
- The **4D-Var** algorithm can be configured with **1** outer loop and **16** inner loops or
- **2** outer loops and **8** inner loops (default). The user can make the appropriate changes to
- the **`submit_mixres_rbl4dvar.sh`** script.
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/9d73cf52-67b8-4bed-8aef-f3926cf10254" />
  
 ### Important CPP options:
 
@@ -55,16 +31,9 @@ They are activated in the build scripts.
    OUT_DOUBLE              Double precision output fields in NetCDF files
    OUT_NETCDF4             Creating output compressed Netcdf4/HDF5 files
    PIO_LIB                 Using Parallel-IO from the PIO library
-   VERIFICATION            Proccess model solution at observation locations
+   VERIFICATION            Process model solution at observation locations
    WTYPE_GRID              Spatially varying Jerlov water type index
   ```
-
-The CPP option **SPLIT_EXECUTABLE** avoids allocating the control vectors and adjoint
-state arrays in the high-resolution **Background** and **Analysis** phases to reduce memory
-requirements. The pointers for such variables are available but unallocated since they are
-unused. Otherwise, it would limit the running of larger applications because they do not
-fit into the computer's memory. Notice that the **outer loop** grid is twice as large as
-the **inner loop** grid.
 
 ### ROMS Input NetCDF files:
 
@@ -93,19 +62,41 @@ by around 50% and improve downloading bandwidth from GitHub.
   build_roms.csh                ROMS GNU Make compiling and linking CSH script
   build_roms.sh                 ROMS GNU Make compiling and linking BASH script
   rbl4dvar.in                   RBL4D-Var data assimilation script
-  roms_eccofs3km.in             ROMS nonlinear model standard input script
-  eccofs.h                      ROMS header file, ECCOFS3 application
+  roms_eccofs3km                ROMS nonlinear model standard input script
+  eccofs3.h                     ROMS header file, ECCOFS3 application
   ```
-### How to Compile ROMS:
+### How to Compile and Run ROMS:
    
 To compile **ROMS** data assimilation executables for **4D-Var** outer and inner loops, use:
   ``` d
     build_roms.sh -pio -j 10                      creates executable romsM
   ```
 Notice it asks to compile with the **PIO-NetCDF** library (**-pio** option) to speed up the
-computations.
+computations. Alternatively, you have the option of downloading the **ROMS** code, say, the branch
+**develop**, with the build script:
 
-Please review the **build** script, as it includes **CPP** options for ROMS executable.
+  ```
+    build_roms.sh -pio -j 10 -b develop
+  ```
+Please review the **build** script, as it includes **CPP** options for the **ROMS** executable.
+
+To run **ROMS**, use:
+
+  ```
+  mpirun -n 64 romsM < roms_eccofs3km.in > & log.nl &
+  ```
+You may edit **`roms_eccofs3dl.in`** to change the parallel partition:
+  
+  ``` d
+! Domain decomposition parameters for serial, distributed-memory, or
+! shared-memory configurations used to determine tile horizontal range
+! indices (Istr,Iend) and (Jstr,Jend), [1:Ngrids].
+
+      NtileI == 8                                     ! I-direction partition
+      NtileJ == 8                                     ! J-direction partition
+  ```
+Note that the total number of **MPI** processes is **NtileI * NtileJ**. 
+
 
 ---
 
@@ -124,4 +115,4 @@ Please review the **build** script, as it includes **CPP** options for ROMS exec
    eccofs3km_roms_rst_20190101.nc                 ECCOFS 3km NLM restart
    eccofs6km_roms_xtr_20190101.nc                 ECCOFS 6km NLM decimated history trajectory
   ```
-
+---
