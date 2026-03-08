@@ -10,9 +10,9 @@
  to improve computational efficiency, as shown in the smaller
  [USEC application](https://github.com/myroms/roms_test/blob/main/USEC/RBL4DVAR_mixres/Readme.md).
  It also computes the model solution at the observation locations, **H(x)** operator, which can be used
- for verification purposes.
+ for verification purposes. The figure below shows the 3km bathymetry and location of the cross-sections.
 
-<img width="800" alt="image" src="https://github.com/user-attachments/assets/9d73cf52-67b8-4bed-8aef-f3926cf10254" />
+<img width="800" alt="eccofs3km_bath" src="https://github.com/user-attachments/assets/05a4bdbf-d892-422e-b3f0-298ca2fe1113" />
  
 ### Important CPP options:
 
@@ -129,10 +129,11 @@ Note that the total number of **MPI** processes is **NtileI * NtileJ**.
 |<img width="600" alt="u_3km_20m" src="https://github.com/user-attachments/assets/da6fd2cf-ed04-44cd-a3d8-d66c8422ac88" /> | <img width="600" alt="u_6km_20m" src="https://github.com/user-attachments/assets/add6c0e4-2b14-482b-bf8d-f7697da5b0e2" /> |
 |<img width="600" alt="v_3km_20m" src="https://github.com/user-attachments/assets/83fb4dd6-0a84-4c93-a3a5-82cc027b6d10" /> | <img width="600" alt="v_6km_20m" src="https://github.com/user-attachments/assets/94b2a1ca-d774-4822-a49c-936bce201c27" /> |
 
+- **NLM Cross-Sections**: Potential temperature and salinity for Jan 4, 2019.
 
-
-
-
-
-
+| 3km Potential Temperature | 3km Salinity  |
+:--------------------------:|:---------------------------------:
+|<img width="600" alt="temp_68W_sec" src="https://github.com/user-attachments/assets/5e1b1eb9-a376-4cf7-b698-ce54e6680e0e" /> | <img width="600" alt="salt_68W_sec" src="https://github.com/user-attachments/assets/f2aae14d-5161-4c52-aa7a-9aeb7c3ce71b" /> |
+|<img width="600" alt="temp_35N_sec" src="https://github.com/user-attachments/assets/3e4e768a-26a2-40c6-b410-94ac2cd016ab" /> | <img width="600" alt="salt_35N_sec" src="https://github.com/user-attachments/assets/80eca752-0f35-49be-ae8b-5af0fe82d70a" /> |
+|<img width="600" alt="temp_Loop_sec" src="https://github.com/user-attachments/assets/476be6e8-77b1-4e1a-b319-acfc25b367a1" /> | <img width="600" alt="salt_Loop_sec" src="https://github.com/user-attachments/assets/fecd7469-feb1-4a73-89cc-edaf6ba342f3" /> |
 
