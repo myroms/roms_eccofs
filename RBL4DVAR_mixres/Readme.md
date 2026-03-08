@@ -120,11 +120,11 @@ by around 50% and improve downloading bandwidth from GitHub.
   build_split.csh               ROMS GNU Make compiling and linking CSH script
   build_split.sh                ROMS GNU Make compiling and linking BASH script
   plot_inc.m                    Matlab plotting script for 4D-Var increments and control vectors 
-  roms_da_usec_era5.tmpl        ROMS data assimilation standard input template, ERA-5 forcing
-  roms_nl_usec_era5.tmpl        ROMS nonlinear model standard input template, ERA-5 forcing
+  roms_da_eccofs_era5.tmpl      ROMS data assimilation standard input template, ERA-5 forcing
+  roms_nl_eccofs_era5.tmpl      ROMS nonlinear model standard input template, ERA-5 forcing
   s4dvar.in                     RBL4D-Var data assimilation template
   submit_mixres_rbl4dvar.sh     Job submission bash script
-  eccofs.h                      ROMS header file, USEC application
+  eccofs.h                      ROMS header file, ECCOFS application
   ```
 The **submit_mixres_rbl4dvar.sh** script is complex.  Please study it carefully. You can modify
 for your appropriate computer environment and **RBL4D-Var** running parameters. There is a
