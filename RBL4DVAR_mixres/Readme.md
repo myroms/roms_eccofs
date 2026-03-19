@@ -132,11 +132,14 @@ user-customizable section above the following heading:
 
   ``` d
   ##---------------------------------------------------------------------
-  ## User tunable parameters. If you follow recommendations, this is
+  ## User tunable parameters. If you follow the recommendations, this is
   ## the only section that you need to customize..
   ##---------------------------------------------------------------------
 
       ROMS_APP="ECCOFS"                # ROMS Application CPP
+  ...
+
+     ROMS_ROOT=${HOME}/ocean/repository/git/roms      # ROMS location
   ...
   ```
 
