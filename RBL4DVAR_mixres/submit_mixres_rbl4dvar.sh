@@ -106,6 +106,19 @@ My4DVarScript() {
   echo "     (Resolution = ${res} km, Fprefix = ${Fprefix}, Fsuffix = ${Fsuffix})"
   echo
 
+## Set spatially-varying background-error correlation length scales.
+## The spatial variability in the file is either is X- or Y-directions.
+## The opposite axis has constant length scales.
+
+ multiscale=0
+#multiscale=1
+
+if [[ $res -eq 6 ]]; then
+ SVCname=${DataDir}/GRD/eccofs6km_Bcorr.nc4
+else
+ SVCname=${DataDir}/GRD/eccofs3km_Bcorr.nc4
+fi
+
 ## Set model, initial conditions, boundary conditions and surface
 ## forcing error covariance standard deviations files. For model
 ## error, use the same as initial condition since we are not
@@ -148,15 +161,29 @@ fi
 ## running in weak-constraint mode.
 
 if [[ $res -eq 6 ]]; then
- NRMnameM=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
- NRMnameI=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
- NRMnameB=${DataDir}/NRM/eccofs6km_roms_nrm_b.nc4
- NRMnameF=${DataDir}/NRM/eccofs6km_roms_nrm_f.nc4
+ if [ $multiscale -eq 1 ]; then
+   NRMnameM=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_i.nc4
+   NRMnameI=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_i.nc4
+   NRMnameB=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_b.nc4
+   NRMnameF=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_f.nc4
+ else
+   NRMnameM=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
+   NRMnameI=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
+   NRMnameB=${DataDir}/NRM/eccofs6km_roms_nrm_b.nc4
+   NRMnameF=${DataDir}/NRM/eccofs6km_roms_nrm_f.nc4
+ fi
 else
- NRMnameM=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
- NRMnameI=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
- NRMnameB=${DataDir}/NRM/eccofs3km_roms_nrm_b.nc4
- NRMnameF=${DataDir}/NRM/eccofs3km_roms_nrm_f.nc4
+ if [ $multiscale -eq 1 ]; then
+   NRMnameM=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_i.nc4
+   NRMnameI=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_i.nc4
+   NRMnameB=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_b.nc4
+   NRMnameF=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_f.nc4
+ else
+   NRMnameM=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
+   NRMnameI=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
+   NRMnameB=${DataDir}/NRM/eccofs3km_roms_nrm_b.nc4
+   NRMnameF=${DataDir}/NRM/eccofs3km_roms_nrm_f.nc4
+ fi
 fi
 
 ## Modify 4D-Var template input script and specify above files.
@@ -170,6 +197,7 @@ fi
  $SUBSTITUTE $Inp4DVAR MyOuterLoop   ${OuterLoop}
  $SUBSTITUTE $Inp4DVAR MyPhase4DVAR  ${Phase4DVAR}
  $SUBSTITUTE $Inp4DVAR MyTimeIAU     ${TimeIAU}
+ $SUBSTITUTE $Inp4DVAR roms_svc.nc   ${SVCname}
  $SUBSTITUTE $Inp4DVAR roms_std_i.nc ${STDnameI}
  $SUBSTITUTE $Inp4DVAR roms_std_m.nc ${STDnameM}
  $SUBSTITUTE $Inp4DVAR roms_std_b.nc ${STDnameB}

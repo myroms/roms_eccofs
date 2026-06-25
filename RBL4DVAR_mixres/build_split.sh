@@ -282,6 +282,11 @@ if [ $pio_lib -eq 1 ]; then
   export     MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDELAYED_SYNC_PIO"
 fi
 
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBOTTOM_ALBEDO"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMULTI_SCALE_B"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNONUNIFORM_SCALES"
+
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEFLATE"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDELAYED_SYNC_NF90"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_NETCDF4"
