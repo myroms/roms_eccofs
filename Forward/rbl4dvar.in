@@ -254,21 +254,22 @@ balance(isVvel) =  F                      ! 3D momentum (u, v)
          Vgamma =  0.0001   0.0001   0.0001   0.0001      ! vertical operator
 
 ! Dirac delta function (i,j,k) locations for testing correlations parameters.
+! (ECCOFS6km values)
 
-  Dirac(isFsur) == 25 20                                   ! free-surface 
-  Dirac(isUbar) == 15 30                                   ! 2D U-momentum
-  Dirac(isVbar) == 15 35                                   ! 2D V-momentum
+  Dirac(isFsur) ==  86 617                                 ! free-surface 
+  Dirac(isUbar) == 395 476                                 ! 2D U-momentum
+  Dirac(isVbar) == 580 348                                 ! 2D V-momentum
 
-  Dirac(isUvel) == 15 30 30                                ! 3D U-momentum
-  Dirac(isVvel) == 15 35 30                                ! 3D V-momentum
-  Dirac(isTvar) == 30 20 30 \                              ! temperature
-                   20 40 30                                ! salinity
+  Dirac(isUvel) == 146 442 50                              ! 3D U-momentum
+  Dirac(isVvel) == 141 279 50                              ! 3D V-momentum
+  Dirac(isTvar) == 634 531 50 \                            ! temperature
+                   483  69 50                              ! salinity
 
-  Dirac(isTsur) == 20  15   \                              ! surface heat flux
-                   25  20                                  ! surface salt flux
+  Dirac(isTsur) == 587 239 \                               ! surface heat flux
+                   328 197                                 ! surface salt flux
 
-  Dirac(isUstr) == 18  30                                  ! surface U-momentum stress
-  Dirac(isVstr) == 18  35                                  ! surface V-momentum stress
+  Dirac(isUstr) == 702  92                                 ! surface U-momentum stress
+  Dirac(isVstr) == 754 340                                 ! surface V-momentum stress
 
 ! The number of horizontal length scales to include in the modeling of
 ! multiscale background error covariance, B. [1:Ngrids].
