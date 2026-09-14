@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# svn $Id$
+#  git $Id$
 #######################################################################
 ## Copyright (c) 2002-2026 The ROMS Group                             #
 ##   Licensed under a MIT/X style license                             #
@@ -82,42 +82,32 @@
 
 ########################################################################
 ## RBL4D-Var data assimilation input script function.  It generates    #
-## 'rbl4dvar_nl.in' or 'rbl4dvar_nl.in' from the 's4dvar.in' template. #
+## 'rbl4dvar_nl.in' or 'rbl4dvar_da.in' from the 's4dvar.in' template. #
 ########################################################################
 
 ## Start of My4DVarScript() function definition
 
 My4DVarScript() {
 
-     DataDir=${1}              # Data directory
-  SUBSTITUTE=${2}              # ROMS Perl subtitution function
-   OuterLoop=${3}              # current outer loop counter
-  Phase4DVAR=${4}              # current 4D-Var computation phase
-     TimeIAU=${5}              # Incremental Analysis Update window
-     OBSname=${6}              # 4D-Var observations NetCDF file
-     Fprefix=${7}              # ROMS output files prefix (use roms_app)
-     Fsuffix=${8}              # ROMS output files suffix
-    Inp4DVAR=${9}              # 4D-Var standard input
-         res=${10}             # Grid resolution
+         DataDir="$1"          # Data directory
+      SUBSTITUTE="$2"          # ROMS Perl subtitution function
+       OuterLoop="$3"          # current outer loop counter
+      Phase4DVAR="$4"          # current 4D-Var computation phase
+         TimeIAU="$5"          # Incremental Analysis Update window
+         Fprefix="$6"          # ROMS output files prefix (use roms_app)
+         Fsuffix="$7"          # ROMS output files suffix
+        Inp4DVAR="$8"          # 4D-Var standard input
+             res="$9"          # Grid resolution
+         IODAobs="${10}"       # Using multiple IODA observation files
+      MultiScale="${11}"       # Activated multi-scale B error covariance
+        CorrType="${12}"       # spatially-varying correlation length scales type
+local -n OBSname="${13}"       # 4D-Var observations NetCDF file(s)
 
   echo
   echo "   Creating 4D-Var Input Script from Template: ${Inp4DVAR}" \
        "  Outer = ${OuterLoop}  Phase = ${Phase4DVAR}"
   echo "     (Resolution = ${res} km, Fprefix = ${Fprefix}, Fsuffix = ${Fsuffix})"
   echo
-
-## Set spatially-varying background-error correlation length scales.
-## The spatial variability in the file is either is X- or Y-directions.
-## The opposite axis has constant length scales.
-
- multiscale=0
-#multiscale=1
-
-if [[ $res -eq 6 ]]; then
- SVCname=${DataDir}/GRD/eccofs6km_Bcorr.nc4
-else
- SVCname=${DataDir}/GRD/eccofs3km_Bcorr.nc4
-fi
 
 ## Set model, initial conditions, boundary conditions and surface
 ## forcing error covariance standard deviations files. For model
@@ -155,30 +145,55 @@ else
  STDnameC=eccofs3km_roms_std_computed.nc4
 fi
 
+## Set spatially-varying background-error horizontal correlation length
+## scales. The spatial variability in the file is either is X- or
+## Y-directions. The opposite axis has constant length scales.
+##
+##   CorrType = 0            uniform, no correlation variability file
+##   CorrType = 1            x- and y-axis correlation variability
+##   CorrType = 2            x-axis correlation variability
+##   CorrType = 3            y-axis correlation variability
+
+if [[ ${CorrType} -eq 1 ]]; then
+  if [[ $res -eq 6 ]]; then
+    SVCname=${DataDir}/GRD/eccofs6km_Bcorr_xy.nc4
+  else
+    SVCname=${DataDir}/GRD/eccofs3km_Bcorr_xy.nc4
+  fi
+fi
+
 ## Set model, initial conditions, boundary conditions and surface
 ## forcing error covariance normalization factors files. For model
 ## error, use the same as initial condition since we are not
 ## running in weak-constraint mode.
 
 if [[ $res -eq 6 ]]; then
- if [ $multiscale -eq 1 ]; then
+ if [[ ${MultiScale} -eq 1 ]]; then
+   echo "   Multi-scale configuration, MultiScale = ${MultiScale}"
+
    NRMnameM=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_i.nc4
    NRMnameI=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_i.nc4
    NRMnameB=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_b.nc4
    NRMnameF=${DataDir}/NRM/eccofs6km_roms_nrm_multiscale_f.nc4
  else
+   echo "   Mono-scale configuration, MultiScale = ${multiScale}"
+
    NRMnameM=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
    NRMnameI=${DataDir}/NRM/eccofs6km_roms_nrm_i.nc4
    NRMnameB=${DataDir}/NRM/eccofs6km_roms_nrm_b.nc4
    NRMnameF=${DataDir}/NRM/eccofs6km_roms_nrm_f.nc4
  fi
 else
- if [ $multiscale -eq 1 ]; then
+ if [[ ${MultiScale} -eq 1 ]]; then
+   echo "   Multi-scale configuration, MultiScale = ${MultiScale}"
+
    NRMnameM=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_i.nc4
    NRMnameI=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_i.nc4
    NRMnameB=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_b.nc4
    NRMnameF=${DataDir}/NRM/eccofs3km_roms_nrm_multiscale_f.nc4
  else
+   echo "   Mono-scale configuration, MultiScale = ${multiScale}"
+
    NRMnameM=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
    NRMnameI=${DataDir}/NRM/eccofs3km_roms_nrm_i.nc4
    NRMnameB=${DataDir}/NRM/eccofs3km_roms_nrm_b.nc4
@@ -186,13 +201,36 @@ else
  fi
 fi
 
+ echo
+ echo "     SVCname  = ${SVCname}"
+ echo
+ echo "     NRMnameM = ${NRMnameM}"
+ echo "     NRMnameI = ${NRMnameI}"
+ echo "     NRMnameB = ${NRMnameB}"
+ echo "     NRMnameF = ${NRMnameF}"
+ echo
+
+## Report input observation(s) files.
+
+ NobsFiles=${#OBSname[@]}
+
+ echo
+ echo "   Processing ${#OBSname[@]} observation files:"
+ echo
+ for obs in ${OBSname[@]}; do
+   echo "     OBSname: ${obs}"
+ done
+
 ## Modify 4D-Var template input script and specify above files.
 
- if [ -f $Inp4DVAR ]; then
+ if [[ -f $Inp4DVAR ]]; then
    /bin/rm ${Inp4DVAR}
  fi
 
+ echo
+ echo "   Copying and editing ../s4dvar.in  into  ${Inp4DVAR}"
  cp ../s4dvar.in ${Inp4DVAR}
+ echo
 
  $SUBSTITUTE $Inp4DVAR MyOuterLoop   ${OuterLoop}
  $SUBSTITUTE $Inp4DVAR MyPhase4DVAR  ${Phase4DVAR}
@@ -203,14 +241,16 @@ fi
  $SUBSTITUTE $Inp4DVAR roms_std_b.nc ${STDnameB}
  $SUBSTITUTE $Inp4DVAR roms_std_f.nc ${STDnameF}
  $SUBSTITUTE $Inp4DVAR roms_std_c.nc ${STDnameC}
- $SUBSTITUTE $Inp4DVAR roms_nrm_i.nc ${NRMnameI}
  $SUBSTITUTE $Inp4DVAR roms_nrm_m.nc ${NRMnameM}
+ $SUBSTITUTE $Inp4DVAR roms_nrm_i.nc ${NRMnameI}
  $SUBSTITUTE $Inp4DVAR roms_nrm_b.nc ${NRMnameB}
  $SUBSTITUTE $Inp4DVAR roms_nrm_f.nc ${NRMnameF}
- $SUBSTITUTE $Inp4DVAR roms_obs.nc   ${OBSname}
+ $SUBSTITUTE $Inp4DVAR MyNobsFiles   ${NobsFiles}
+ $SUBSTITUTE $Inp4DVAR roms_obs.nc   ${OBSname[@]}
  $SUBSTITUTE $Inp4DVAR roms_hss.nc   ${Fprefix}_roms_hss_${Fsuffix}.nc
  $SUBSTITUTE $Inp4DVAR roms_lcz.nc   ${Fprefix}_roms_lcz_${Fsuffix}.nc
  $SUBSTITUTE $Inp4DVAR roms_lze.nc   ${Fprefix}_roms_lze_${Fsuffix}.nc
+ $SUBSTITUTE $Inp4DVAR roms_err.nc   ${Fprefix}_roms_err_${Fsuffix}.nc
 
  if [[ $res -eq 6 ]]; then           # same as outer loops grid
    $SUBSTITUTE $Inp4DVAR roms_mod.nc eccofs3km_roms_mod_${Fsuffix}.nc
@@ -220,7 +260,6 @@ fi
    $SUBSTITUTE $Inp4DVAR roms_inc.nc eccofs6km_roms_itl_${Fsuffix}.nc
  fi
 
- $SUBSTITUTE $Inp4DVAR roms_err.nc   ${Fprefix}_roms_err_${Fsuffix}.nc
 }
 
 ## End of My4DVarScript() function definition
@@ -254,7 +293,7 @@ fi
 
        HereDir=${PWD}                  # current directory
 
-       DataDir="../../Data"            # data directory 
+       DataDir="../../Data"            # data directory
 
         ObsDir=${DataDir}/OBS          # observations directory
 
@@ -282,6 +321,15 @@ fi
 # LAST_INI_DAY="2019-01-04"            # last cycle initialization date
 
   ROMS_TIMEREF="2011-01-01"            # ROMS time reference date
+
+#      IODAobs=0                       # Legacy single observation file
+       IODAobs=1                       # Multiple IODA oservation files
+
+#   MultiScale=0                       # Legacy Mono-Scale B-modeling
+    MultiScale=1                       # Multi-Scale B-modeling
+
+#     CorrType=0                       # Legacy uniform correlation scales
+      CorrType=1                       # x- and y-correlation scales file
 
       INTERVAL=3                       # 4D-Var interval window (days)
 
@@ -640,10 +688,62 @@ while [ $SDAY -le $L_DN ]; do
   OuterLoop=0                        # initialize outer loop counter
   Phase4DVAR="background"            # initialize 4D-Var phase
 
-## Set observations NetCDF filename.
+## Set observations NetCDF filename. Here, "_area" and "_time" refers
+## to area-averaged and time-averaged observations.
 
-  OBSnameF="${FprefixF}_roms_obs_${Fsuffix}.nc4"
-  OBSnameC="${FprefixC}_roms_obs_${Fsuffix}.nc4"
+  echo
+  echo "   Observation File(s):"
+  echo
+
+  if [[ ${IODAobs} -eq 1 ]]; then
+    OBSnameF[${#OBSnameF[@]}]="${ObsDir}/${FprefixF}_adt_${Fsuffix}.nc4"
+    OBSnameF[${#OBSnameF[@]}]="${ObsDir}/${FprefixF}_sst_${Fsuffix}.nc4"
+    OBSnameF[${#OBSnameF[@]}]="${ObsDir}/${FprefixF}_sss_${Fsuffix}.nc4"
+    OBSnameF[${#OBSnameF[@]}]="${ObsDir}/${FprefixF}_temp_${Fsuffix}.nc4"
+    OBSnameF[${#OBSnameF[@]}]="${ObsDir}/${FprefixF}_salt_${Fsuffix}.nc4"
+#   OBSnameF[${#OBSnameF[@]}]="${ObsDir}/${FprefixF}_uv_codar_${Fsuffix}.nc4"
+
+    OBSnameC[${#OBSnameC[@]}]="${ObsDir}/${FprefixC}_adt_${Fsuffix}.nc4"
+    OBSnameC[${#OBSnameC[@]}]="${ObsDir}/${FprefixC}_sst_${Fsuffix}.nc4"
+    OBSnameC[${#OBSnameC[@]}]="${ObsDir}/${FprefixC}_sss_${Fsuffix}.nc4"
+    OBSnameC[${#OBSnameC[@]}]="${ObsDir}/${FprefixC}_temp_${Fsuffix}.nc4"
+    OBSnameC[${#OBSnameC[@]}]="${ObsDir}/${FprefixC}_salt_${Fsuffix}.nc4"
+#   OBSnameC[${#OBSnameC[@]}]="${ObsDir}/${FprefixC}_uv_codar_${Fsuffix}.nc4"
+  else
+    OBSnameF="${FprefixF}_roms_obs_${Fsuffix}.nc4"
+    OBSnameC="${FprefixC}_roms_obs_${Fsuffix}.nc4"
+  fi
+
+  NobsFilesF=${#OBSnameF[@]}
+  NobsFilesC=${#OBSnameC[@]}
+
+  echo "     Fine Resolution Grid, NobsFiles = ${NobsFilesF}"
+  echo
+  for obs in ${OBSnameF[@]}; do
+    obsfile=$(basename "$obs")
+    obspath="${HereDir%/*}/Data/OBS/${obsfile}"
+    if [ -f "${obspath}" ]; then
+      echo "     OBSnameF: $obs"
+    else
+      echo "     file: ${obspath} cannot be found."
+      exit 1
+    fi
+  done
+
+  echo
+  echo "     Course Resolution Grid, NobsFiles = ${NobsFilesC}"
+  echo
+  for obs in ${OBSnameC[@]}; do
+    obsfile=$(basename "$obs")
+    obspath="${HereDir%/*}/Data/OBS/${obsfile}"
+    if [ -f "${obspath}" ]; then
+      echo "     OBSnameC: $obs"
+    else
+      echo "     file: ${obspath} cannot be found."
+      exit 1
+    fi
+  done
+  echo
 
 ## Copy outer loops nonlinear model initial conditions file.
 
@@ -662,18 +762,21 @@ while [ $SDAY -le $L_DN ]; do
   chmod u+w ${ROMS_INI_C}                    # change protection
 
 ## Get a clean copy of the observation file.  This is really important
-## since this file will be modified.
+## since this file will be modified. Note input IODA files are not
+## modified.
 
-  echo "   Copying OBS    file ${ObsDir}/${OBSnameF}  as  ${OBSnameF}"
+  if [[ ${IODAobs} -ne 1 ]]; then
+    echo "   Copying OBS    file ${ObsDir}/${OBSnameF}  as  ${OBSnameF}"
 
-  cp -p ${ObsDir}/${OBSnameF} .
-  chmod u+w ${OBSnameF}                      # change protection
+    cp -p ${ObsDir}/${OBSnameF} .
+    chmod u+w ${OBSnameF}                      # change protection
 
-  if [[ ${ResF} -ne ${ResC} ]]; then
-    echo "   Copying OBS    file ${ObsDir}/${OBSnameC}  as  ${OBSnameC}"
+    if [[ ${ResF} -ne ${ResC} ]]; then
+      echo "   Copying OBS    file ${ObsDir}/${OBSnameC}  as  ${OBSnameC}"
 
-    cp -p ${ObsDir}/${OBSnameC} .
-    chmod u+w ${OBSnameC}                    # change protection
+      cp -p ${ObsDir}/${OBSnameC} .
+      chmod u+w ${OBSnameC}                    # change protection
+    fi
   fi
 
 ## Set ROMS executable file links.
@@ -693,7 +796,6 @@ while [ $SDAY -le $L_DN ]; do
     EXECUTE_B="${MPIrun} ${nPETs} ${ROMS_EXE_B} ${ROMS_DAinp}"
   fi
 
-
 ## Run 4D-Var 'background' phase ......................................
 
   echo
@@ -702,10 +804,13 @@ while [ $SDAY -le $L_DN ]; do
                              "  Phase = ${Phase4DVAR}"
 
 ## Create ROMS 4D-Var input script 'rbl4dvar_nl.in' from template.
+## (Note that OBSnameF is passed as a name reference instead
+##  of a variable since it is a vector of filenames).
 
   My4DVarScript ${DataDir} ${SUBSTITUTE} ${OuterLoop} ${Phase4DVAR} \
-                ${MyTimeIAU} ${OBSnameF} ${FprefixF} ${Fsuffix} \
-                ${Inp4DVAR_nl} ${ResF}
+                ${MyTimeIAU} ${FprefixF} ${Fsuffix} ${Inp4DVAR_nl} \
+                ${ResF} ${IODAobs} ${MultiScale} ${CorrType} \
+                OBSnameF
 
   echo "   ${EXECUTE_A}"
 
@@ -720,7 +825,7 @@ while [ $SDAY -le $L_DN ]; do
     fi
 
     if [ $? -ne 0 ] ; then
-      echo 
+      echo
       echo "Error while running 4D-Var System:  Cycle = ${Cycle}" \
                                              "  Outer = ${OuterLoop}" \
                                              "  Phase = ${Phase4DVAR}"
@@ -747,7 +852,7 @@ while [ $SDAY -le $L_DN ]; do
 ## Start 4D-Var outer loops :::::::::::::::::::::::::::::::::::::::::::
 
   while [ $OuterLoop -lt $MyNouter ]; do
-  
+
     OuterLoop=$(( $OuterLoop + 1 ))
 
 ## Run 4D-Var 'increment' phase .......................................
@@ -760,10 +865,13 @@ while [ $SDAY -le $L_DN ]; do
                                "  Phase = ${Phase4DVAR}"
 
 ## Create ROMS 4D-Var input script 'rbl4dvar_da.in' from template.
+## (Note that OBSnameF is passed as a name reference instead
+##  of a variable since it is a vector of filenames).
 
     My4DVarScript ${DataDir} ${SUBSTITUTE} ${OuterLoop} ${Phase4DVAR} \
-                  ${MyTimeIAU} ${OBSnameC} ${FprefixC} ${Fsuffix} \
-                  ${Inp4DVAR_da} ${ResC}
+                  ${MyTimeIAU} ${FprefixC} ${Fsuffix} ${Inp4DVAR_nl} \
+                  ${ResC} ${IODAobs} ${MultiScale} ${CorrType} \
+                  OBSnameC
 
     echo "   ${EXECUTE_B}"
 
@@ -778,7 +886,7 @@ while [ $SDAY -le $L_DN ]; do
       fi
 
       if [ $? -ne 0 ] ; then
-        echo 
+        echo
         echo "Error while running 4D-Var System:  Cycle = ${Cycle}" \
                                                "  Outer = ${OuterLoop}" \
 			                       "  Phase = ${Phase4DVAR}"
@@ -796,9 +904,13 @@ while [ $SDAY -le $L_DN ]; do
                                "  Outer = ${OuterLoop}" \
 			       "  Phase = ${Phase4DVAR}"
 
-    My4DVarScript ${DataDir} ${SUBSTITUTE} ${OuterLoop} ${Phase4DVAR} \
-                  ${MyTimeIAU} ${OBSnameF} ${FprefixF} ${Fsuffix} \
-                  ${Inp4DVAR_nl} ${ResF}
+## (Note that OBSnameF is passed as a name reference instead
+##  of a variable since it is a vector of filenames).
+
+  My4DVarScript ${DataDir} ${SUBSTITUTE} ${OuterLoop} ${Phase4DVAR} \
+                ${MyTimeIAU} ${FprefixF} ${Fsuffix} ${Inp4DVAR_nl} \
+                ${ResF} ${IODAobs} ${MultiScale} ${CorrType} \
+                OBSnameF
 
     echo "   ${EXECUTE_A}"
 
@@ -813,7 +925,7 @@ while [ $SDAY -le $L_DN ]; do
       fi
 
       if [ $? -ne 0 ] ; then
-        echo 
+        echo
         echo "Error while running 4D-Var System:  Cycle = ${Cycle}" \
                                                "  Outer = ${OuterLoop}" \
 			                       "  Phase = ${Phase4DVAR}"

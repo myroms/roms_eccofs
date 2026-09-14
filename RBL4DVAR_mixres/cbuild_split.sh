@@ -321,6 +321,8 @@ fi
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBOTTOM_ALBEDO"
 
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DIODA_OBS"
+
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMULTI_SCALE_B"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNONUNIFORM_SCALES"
 
@@ -347,6 +349,7 @@ fi
 #export         which_MPI=mpich            # compile with MPICH library
 #export         which_MPI=mpich2           # compile with MPICH2 library
 #export         which_MPI=mvapich2         # compile with MVAPICH2 library
+#export         which_MPI=oneapi           # compile with mpiifx library
  export         which_MPI=openmpi          # compile with OpenMPI library
 
  export              FORT=ifx

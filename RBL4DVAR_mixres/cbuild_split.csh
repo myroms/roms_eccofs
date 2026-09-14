@@ -323,6 +323,8 @@ endif
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBOTTOM_ALBEDO"
 
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DIODA_OBS"
+
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMULTI_SCALE_B"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNONUNIFORM_SCALES"
 
@@ -349,6 +351,7 @@ endif
 #setenv which_MPI            mpich           # compile with MPICH library
 #setenv which_MPI            mpich2          # compile with MPICH2 library
 #setenv which_MPI            mvapich2        # compile with MVAPICH2 library
+#setenv which_MPI            oneapi          # compile with mpiifx library
  setenv which_MPI            openmpi         # compile with OpenMPI library
 
 #setenv FORT                 ifx
