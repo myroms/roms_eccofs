@@ -76,6 +76,12 @@
 # define ADD_M2OBC
 #endif
 
+#define BULK_FLUXES
+#define LONGWAVE_OUT
+#define WIND_MINUS_CURRENT
+#define COOL_SKIN
+#define EMINUSP
+
 /*
 **  Common options to all 4DVAR algorithms.
 */
