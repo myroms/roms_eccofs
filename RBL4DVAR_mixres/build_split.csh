@@ -235,7 +235,7 @@ setenv   MY_PROJECT_DIR     ${PWD}
 if ( $da_exe == 1 ) then
   echo "Compiling 4D-Var Data Assimilation inner loops executable:"  
   echo
-# setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
 # setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSINGLE_PRECISION"
 endif
 
@@ -251,7 +251,7 @@ if ( $nl_exe == 1 ) then
 # setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIURNAL_SRFLUX"   # NARR forcing
 
 # setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
-# setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSINGLE_PRECISION"
+  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSINGLE_PRECISION"
 endif
 
 if ( $pio_lib == 1 ) then
@@ -266,7 +266,7 @@ endif
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DRPCG"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTIME_CONV"
 
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_BOUNDARY"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_BOUNDARY"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_STFLUX"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_WSTRESS"
 
@@ -275,6 +275,13 @@ endif
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCHECKSUM"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUTPUT_STATS"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCHECK_OPEN_FILES"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBOTTOM_ALBEDO"
+
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DIODA_OBS"
+
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMULTI_SCALE_B"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNONUNIFORM_SCALES"
 
 if ( $pio_lib == 1 ) then
   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDELAYED_SYNC_PIO"
@@ -314,8 +321,8 @@ endif
 #setenv which_MPI           mpich       # compile with MPICH library
 #setenv which_MPI           mpich2      # compile with MPICH2 library
 #setenv which_MPI           mvapich2    # compile with MVAPICH2 library
+#setenv which_MPI           oneapi      # compile with mpiifx library
  setenv which_MPI           openmpi     # compile with OpenMPI library
-
 #setenv USE_OpenMP          on          # shared-memory parallelism
 
 #setenv FORT                ifx

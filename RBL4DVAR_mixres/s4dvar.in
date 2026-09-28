@@ -1,6 +1,6 @@
 !  4DVar assimilation input parameters.
 !
-!git $Id$
+! git $Id$
 !========================================================= Hernan G. Arango ===
 !  Copyright (c) 2002-2026 The ROMS Group                                     !
 !    Licensed under a MIT/X style license                                     !
@@ -250,8 +250,8 @@ balance(isVvel) =  F                      ! 3D momentum (u, v)
 !
 !                  IC       Model    OBC      Sur For
 
-         Hgamma =  0.5      0.5      0.5      0.5         ! horizontal operator
-         Vgamma =  0.0001   0.0001   0.0001   0.0001      ! vertical operator
+         Hgamma =  0.5      0.5      0.5      0.5          ! horizontal operator
+         Vgamma =  0.05     0.05     0.05     0.05         ! vertical operator
 
 ! Dirac delta function (i,j,k) locations for testing correlations parameters.
 ! (ECCOFS6km values)
@@ -366,23 +366,44 @@ VdecayM(isTvar) ==  10.0d0    10.0d0                       ! 1:NT tracers
 ! Model error covariance: temporal decorrelation scales (days).
 ! This scales are only used in weak-constraint data assimilation.
 
-TdecayM(isFsur) ==  1.0d0                                 ! free-surface
-TdecayM(isUbar) ==  1.0d0                                 ! 2D U-momentum
-TdecayM(isVbar) ==  1.0d0                                 ! 2D V-momentum
-TdecayM(isUvel) ==  1.0d0                                 ! 3D U-momentum
-TdecayM(isVvel) ==  1.0d0                                 ! 3D V-momentum
-TdecayM(isTvar) ==  1.0d0   1.0d0                         ! 1:NT tracers
+TdecayM(isFsur) ==  1.0d0                                  ! free-surface
+TdecayM(isUbar) ==  1.0d0                                  ! 2D U-momentum
+TdecayM(isVbar) ==  1.0d0                                  ! 2D V-momentum
+
+TdecayM(isUvel) ==  1.0d0                                  ! 3D U-momentum
+TdecayM(isVvel) ==  1.0d0                                  ! 3D V-momentum
+TdecayM(isTvar) ==  1.0d0   1.0d0                          ! 1:NT tracers
 
 ! Initial conditions error covariance: horizontal, isotropic (HdecayI) and
 ! anisotropic (HdecayIX, HdecayIY) decorrelation length scales (m).
 
-HdecayI(isFsur) ==  40.0d+3                               ! free-surface
-HdecayI(isUbar) ==  40.0d+3                               ! 2D U-momentum
-HdecayI(isVbar) ==  40.0d+3                               ! 2D V-momentum
+HdecayI(isFsur) ==  40.0d+3                                ! free-surface
+HdecayI(isUbar) ==  40.0d+3                                ! 2D U-momentum
+HdecayI(isVbar) ==  40.0d+3                                ! 2D V-momentum
 
-HdecayI(isUvel) ==  40.0d+3                               ! 3D U-momentum
-HdecayI(isVvel) ==  40.0d+3                               ! 3D V-momentum
-HdecayI(isTvar) ==  40.0d+3   15.0d+3                     ! 1:NT tracers
+HdecayI(isUvel) ==  40.0d+3                                ! 3D U-momentum
+HdecayI(isVvel) ==  40.0d+3                                ! 3D V-momentum
+HdecayI(isTvar) ==  40.0d+3   15.0d+3                      ! 1:NT tracers
+
+! [1:Nscale, 1:Ngrids] values are expected.
+
+HdecayIX(isFsur) == 40.0d+3                                ! free-surface  X-scale
+HdecayIY(isFsur) == 40.0d+3                                ! free-surface  Y-scale
+
+HdecayIX(isUbar) == 40.0d+3                                ! 2D U-momentum X-scale
+HdecayIY(isUbar) == 40.0d+3                                ! 2D U-momentum Y-scale
+
+HdecayIX(isVbar) == 40.0d+3                                ! 2D V-momentum X-scale
+HdecayIY(isVbar) == 40.0d+3                                ! 2D V-momentum Y-scale
+
+HdecayIX(isUvel) == 40.0d+3                                ! 3D U-momentum X-scale
+HdecayIY(isUvel) == 40.0d+3                                ! 3D U-momentum Y-scale
+
+HdecayIX(isVvel) == 40.0d+3                                ! 3D V-momentum x-scale
+HdecayIY(isVvel) == 40.0d+3                                ! 3D V-momentum y-scale
+
+HdecayIX(isTvar) == 40.0d+3  15.0d+3                       ! 1:NT tracers  X-scale
+HdecayIY(isTvar) == 40.0d+3  15.0d+3                       ! 1:NT tracers  Y-scale
 
 ! [1:Nscale, 1:Ngrids] values are expected.
 
@@ -407,9 +428,9 @@ HdecayIY(isTvar) == 40.0d+3  15.0d+3                      ! 1:NT tracers  Y-scal
 ! Initial conditions error covariance: vertical, isotropic decorrelation
 ! length scales (m).
 
-VdecayI(isUvel) ==  10.0d0                                ! 3D U-momentum
-VdecayI(isVvel) ==  10.0d0                                ! 3D V-momentum
-VdecayI(isTvar) ==  10.0d0    10.0d0                      ! 1:NT tracers
+VdecayI(isUvel) ==  10.0d0                                 ! 3D U-momentum
+VdecayI(isVvel) ==  10.0d0                                 ! 3D V-momentum
+VdecayI(isTvar) ==  10.0d0    10.0d0                       ! 1:NT tracers
 
 ! Boundary conditions error covariance: horizontal, isotropic decorrelation
 ! scales (m). If multiscale B-modeling, enter value for each Nscale since
@@ -418,21 +439,21 @@ VdecayI(isTvar) ==  10.0d0    10.0d0                      ! 1:NT tracers
 !
 !                  1: west  2: south  3: east  4: north
 
-HdecayB(isFsur) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3    ! free-surface
-HdecayB(isUbar) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3    ! 2D U-momentum
-HdecayB(isVbar) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3    ! 2D V-momentum
-HdecayB(isUvel) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3    ! 3D U-momentum
-HdecayB(isVvel) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3    ! 3D V-momentum
-HdecayB(isTvar) == 4*40.0d+3   4*15.0d+3                  ! (4,1:NT) tracers
+HdecayB(isFsur) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3     ! free-surface
+HdecayB(isUbar) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3     ! 2D U-momentum
+HdecayB(isVbar) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3     ! 2D V-momentum
+HdecayB(isUvel) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3     ! 3D U-momentum
+HdecayB(isVvel) ==  40.0d+3  40.0d+3  40.0d+3  40.0d+3     ! 3D V-momentum
+HdecayB(isTvar) == 4*40.0d+3   4*15.0d+3                   ! (4,1:NT) tracers
 
 ! Boundary conditions error covariance: vertical, isotropic decorrelation
 ! scales (m). A value is expected for each boundary edge in the following
 ! order:
 !                 1: west  2: south  3: east  4: north
 
-VdecayB(isUvel) ==  10.0d0   10.0d0   10.0d0   10.0d0     ! 3D U-momentum
-VdecayB(isVvel) ==  10.0d0   10.0d0   10.0d0   10.0d0     ! 3D V-momentum
-VdecayB(isTvar) == 4*10.d0     4*10.d0                    ! (4,1:NT) tracers
+VdecayB(isUvel) ==  10.0d0   10.0d0   10.0d0   10.0d0      ! 3D U-momentum
+VdecayB(isVvel) ==  10.0d0   10.0d0   10.0d0   10.0d0      ! 3D V-momentum
+VdecayB(isTvar) == 4*10.d0     4*10.d0                     ! (4,1:NT) tracers
 
 ! Surface forcing error covariance: horizontal, isotropic (HdecayF) and
 ! anisotropic (HdecayFX, HdecayFY) decorrelation length scales (m).
@@ -600,7 +621,7 @@ Sigma_max(isTvar) == 0.33d0   0.056d0  ! 1:NT tracers maximum STD
 
 ! Input observation filename(s), [1:Ngrids].
 
-      NOBSFILES =  1
+      NOBSFILES == MyNobsFiles
         OBSname == roms_obs.nc
 
 ! Input/output Hessian eigenvectors filename, [1:Ngrids].
@@ -1283,14 +1304,6 @@ Sigma_max(isTvar) == 0.33d0   0.056d0  ! 1:NT tracers maximum STD
 !  SVCname        Input background-error covariance horizontal
 !                   spatially-varying correlation length scales filename.
 !
-!                 Users can utilize the original native 4D-Var NetCDF file,
-!                 which consolidates all observations into a single vector
-!                 sorted in ascending order of time. As the observation
-!                 operators and filters become increasingly complex,
-!                 separating the observations into multiple files can be
-!                 beneficial. Alternatively, IODA enhanced-NetCDF4 files
-!                 with "Groups" are also acceptable.
-!
 !  STDnameM       Input model error covariance
 !                   standard deviation filename.
 !
@@ -1322,6 +1335,14 @@ Sigma_max(isTvar) == 0.33d0   0.056d0  ! 1:NT tracers maximum STD
 !
 !  OBSname        Input/Output observations data filename(s).
 !
+!                 Users can utilize the original native 4D-Var NetCDF file,
+!                 which consolidates all observations into a single vector
+!                 sorted in ascending order of time. As the observation
+!                 operators and filters become increasingly complex,
+!                 separating the observations into multiple files can be
+!                 beneficial. Alternatively, IODA enhanced-NetCDF4 files
+!                 with "Groups" are also acceptable.
+!
 !  HSSname        Input/Output Hessian eigenvectors filename.
 !
 !  LCZname        Input/output Lanczos vectors filename.
@@ -1346,4 +1367,4 @@ Sigma_max(isTvar) == 0.33d0   0.056d0  ! 1:NT tracers maximum STD
 ! mixed-resolution split 4D-Var for regridding (coarse-to-fine), where
 ! the inner loops are run at lower resolution to accelerate the computations.
 !
-!  INCname        Coarse grid increment file name.
+!  INCname        Coarse grid increment filename.
