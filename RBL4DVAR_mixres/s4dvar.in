@@ -405,6 +405,26 @@ HdecayIY(isVvel) == 40.0d+3                                ! 3D V-momentum y-sca
 HdecayIX(isTvar) == 40.0d+3  15.0d+3                       ! 1:NT tracers  X-scale
 HdecayIY(isTvar) == 40.0d+3  15.0d+3                       ! 1:NT tracers  Y-scale
 
+! [1:Nscale, 1:Ngrids] values are expected.
+
+HdecayIX(isFsur) == 40.0d+3                               ! free-surface  X-scale
+HdecayIY(isFsur) == 40.0d+3                               ! free-surface  Y-scale
+
+HdecayIX(isUbar) == 40.0d+3                               ! 2D U-momentum X-scale
+HdecayIY(isUbar) == 40.0d+3                               ! 2D U-momentum Y-scale
+
+HdecayIX(isVbar) == 40.0d+3                               ! 2D V-momentum X-scale
+HdecayIY(isVbar) == 40.0d+3                               ! 2D V-momentum Y-scale
+
+HdecayIX(isUvel) == 40.0d+3                               ! 3D U-momentum X-scale
+HdecayIY(isUvel) == 40.0d+3                               ! 3D U-momentum Y-scale
+
+HdecayIX(isVvel) == 40.0d+3                               ! 3D V-momentum x-scale
+HdecayIY(isVvel) == 40.0d+3                               ! 3D V-momentum y-scale
+
+HdecayIX(isTvar) == 40.0d+3  15.0d+3                      ! 1:NT tracers  X-scale
+HdecayIY(isTvar) == 40.0d+3  15.0d+3                      ! 1:NT tracers  Y-scale
+
 ! Initial conditions error covariance: vertical, isotropic decorrelation
 ! length scales (m).
 

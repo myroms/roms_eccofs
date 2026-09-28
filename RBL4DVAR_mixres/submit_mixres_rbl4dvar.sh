@@ -109,6 +109,19 @@ local -n OBSname="${13}"       # 4D-Var observations NetCDF file(s)
   echo "     (Resolution = ${res} km, Fprefix = ${Fprefix}, Fsuffix = ${Fsuffix})"
   echo
 
+## Set spatially-varying background-error correlation length scales.
+## The spatial variability in the file is either is X- or Y-directions.
+## The opposite axis has constant length scales.
+
+ multiscale=0
+#multiscale=1
+
+if [[ $res -eq 6 ]]; then
+ SVCname=${DataDir}/GRD/eccofs6km_Bcorr.nc4
+else
+ SVCname=${DataDir}/GRD/eccofs3km_Bcorr.nc4
+fi
+
 ## Set model, initial conditions, boundary conditions and surface
 ## forcing error covariance standard deviations files. For model
 ## error, use the same as initial condition since we are not
